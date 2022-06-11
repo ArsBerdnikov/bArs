@@ -1,8 +1,9 @@
 
 # 13 1
-
+#
 # nums_sum = []
 # nums = [965, 582, 23, 8, 695210]
+#
 #
 # def sum_nums(nums):
 #     for i in nums:
@@ -12,27 +13,27 @@
 #             sum = sum + last
 #             i = i // 10
 #         nums_sum.append(sum)
-#     return nums_sum
+#     return sorted(nums_sum)
 #
 #
-# print(sorted(sum_nums(nums)))
+# print(sum_nums(nums))
 
 
 # 13 2
 # x = float(input('Enter number: '))
 #
 #
-# def func(result):
+# def func_x(x):
 #     if x <= -2:
-#         result = 1 - (x + 2)**2
+#         return 1 - (x + 2)**2
 #     elif -2 < x <= 2:
-#         result = -1 * (x / 2)
+#         return - (x / 2)
 #     elif x > 2:
-#         result = (x - 2)**2 + 1
-#     return result
+#         return (x - 2)**2 + 1
+#     # return result
 #
 #
-# print(func(x))
+# print(func_x(x))
 
 # 13 3
 # nums = [852, 85, 784, 58]

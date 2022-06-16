@@ -144,49 +144,49 @@
 # print(d)
 
 # # 2 5
-import pyttsx3
-
-engine = pyttsx3.init()  # инициализация движка
-# зададим свойства
-engine.setProperty('rate', 200)  # скорость речи
-engine.setProperty('volume', 0.9)  # громкость
-
-cake = {"наполеон": ["масло, мука, сахар", 7, 1100],
-        "медовик": ["мука, сахар, мед", 15, 1200],
-        "киевский": ["мука, сливки, крем", 10, 1500]}
-
-engine.say("Какой торт Вы хотели бы приобрести")
-engine.runAndWait()
-cake_type = input("Какой торт Вы хотели бы приобрести: ").lower()
-if cake_type not in cake:
-    print(f'торта {cake_type} нет')
-    engine.say(f'торта {cake_type} нет')
-    engine.runAndWait()
-else:
-    engine.say("Что Вы хотели бы уточнить")
-    engine.runAndWait()
-    cake_wish = input("Что Вы хотели бы уточнить: ").lower()
-    if cake_wish == "описание":
-        print(f'Торт {cake_type} состоит из {cake[cake_type][0]}')
-        engine.say(f'Торт {cake_type} состоит из {cake[cake_type][0]}')
-        engine.runAndWait()
-    elif cake_wish == "цена":
-        print(f'Цена торта {cake_type} {cake[cake_type][1]} рублей')
-        engine.say(f'Цена торта {cake_type} {cake[cake_type][1]} рублей')
-        engine.runAndWait()
-    elif cake_wish == "количество":
-        print(f'Торт {cake_type} осталось {cake[cake_type][2]} грамм')
-        engine.say(f'Торт {cake_type} осталось {cake[cake_type][2]} грамм')
-        engine.runAndWait()
-    elif cake_wish == "купить":
-        engine.say("Сколько торта Вам положить")
-        engine.runAndWait()
-        weight = int(input("Сколько торта Вам положить: "))
-        print(f'к оплате {cake[cake_type][1] * weight / 100}')
-        print(f'торта {cake_type} осталось {cake[cake_type][2] - weight}')
-print('Спасибо, Желаете чего-то еще?')
-engine.say('Спасибо, Желаете чего-то еще?')
-engine.runAndWait()
+# import pyttsx3
+#
+# engine = pyttsx3.init()  # инициализация движка
+# # зададим свойства
+# engine.setProperty('rate', 200)  # скорость речи
+# engine.setProperty('volume', 0.9)  # громкость
+#
+# cake = {"наполеон": ["масло, мука, сахар", 7, 1100],
+#         "медовик": ["мука, сахар, мед", 15, 1200],
+#         "киевский": ["мука, сливки, крем", 10, 1500]}
+#
+# engine.say("Какой торт Вы хотели бы приобрести")
+# engine.runAndWait()
+# cake_type = input("Какой торт Вы хотели бы приобрести: ").lower()
+# if cake_type not in cake:
+#     print(f'торта {cake_type} нет')
+#     engine.say(f'торта {cake_type} нет')
+#     engine.runAndWait()
+# else:
+#     engine.say("Что Вы хотели бы уточнить")
+#     engine.runAndWait()
+#     cake_wish = input("Что Вы хотели бы уточнить: ").lower()
+#     if cake_wish == "описание":
+#         print(f'Торт {cake_type} состоит из {cake[cake_type][0]}')
+#         engine.say(f'Торт {cake_type} состоит из {cake[cake_type][0]}')
+#         engine.runAndWait()
+#     elif cake_wish == "цена":
+#         print(f'Цена торта {cake_type} {cake[cake_type][1]} рублей')
+#         engine.say(f'Цена торта {cake_type} {cake[cake_type][1]} рублей')
+#         engine.runAndWait()
+#     elif cake_wish == "количество":
+#         print(f'Торт {cake_type} осталось {cake[cake_type][2]} грамм')
+#         engine.say(f'Торт {cake_type} осталось {cake[cake_type][2]} грамм')
+#         engine.runAndWait()
+#     elif cake_wish == "купить":
+#         engine.say("Сколько торта Вам положить")
+#         engine.runAndWait()
+#         weight = int(input("Сколько торта Вам положить: "))
+#         print(f'к оплате {cake[cake_type][1] * weight / 100}')
+#         print(f'торта {cake_type} осталось {cake[cake_type][2] - weight}')
+# print('Спасибо, Желаете чего-то еще?')
+# engine.say('Спасибо, Желаете чего-то еще?')
+# engine.runAndWait()
 
 
 # 2 6

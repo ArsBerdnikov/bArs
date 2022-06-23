@@ -172,3 +172,59 @@
 #             print("НЕт столько квартир")
 
 
+# 14 5 ## 14 6
+class Pet:
+    def __init__(self, name, age, master):
+        self.name = name
+        self.age = age
+        self.master = master
+
+    def run(self):
+        print(f'I can run')
+
+    def jump(self):
+        print(f'I can jump')
+
+    def birthday(self):
+        print(f'I am {1 + self.age} years old')
+
+    def sleep(self):
+        print(f'I can run')
+
+    def portrait(self):
+        self.run()
+        self.jump()
+        self.birthday()
+        self.sleep()
+        if hasattr(self, 'bark'):
+            self.bark()
+        if hasattr(self, 'meow'):
+            self.meow()
+        if hasattr(self, 'fly'):
+            self.fly()
+
+
+class Dog(Pet):
+    def bark(self):
+        print(f'I say bow-wow')
+
+
+class Cat(Pet):
+    def meow(self):
+        print(f'I say meow')
+
+
+class Parrot(Pet):
+    def fly(self):
+        print(f'I can fly')
+
+
+dog1 = Dog('Sharik', 3, 'Vasya')
+cat1 = Cat('Murka', 2, 'Masha')
+parrot1 = Parrot('Ara', 4, 'Lena')
+
+dog1.portrait()
+cat1.portrait()
+parrot1.portrait()
+
+

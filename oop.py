@@ -87,7 +87,7 @@
 #         self.age = age
 #
 #     def change_name(self, new_name):
-#         dog1.name = new_name
+#         self.name = new_name
 #
 #
 # dog1 = Dog(1, 10, 'Bobik')
@@ -99,12 +99,76 @@
 #
 # print(dog1.name)
 
+# *********************
+#
+# class Building:
+#     def __init__(self, floor, windows, doors):
+#         self.floor = floor
+#         self.windows = windows
+#         self.doors = doors
+#
+#     def build(self):
+#         return f'The building was built'
+#
+#
+# class PoliceDepartment(Building):
+#     def __init__(self, floor, windows, doors, cars):
+#         super().__init__(floor, windows, doors)
+#         self.cars = cars
+#
+#
+# police = PoliceDepartment(2, 20, 10, 5)
+# police.floor = 3
 
 
+# class BeautySalonMixin:
+#     def salon_opening_hours(self, current_time):
+#         if self.salon_close_time >= current_time >= self.salon_open_time:
+#             return "Салон работает"
+#         return "Салон не работает"
+#
+#     def set_time_work(self, time_open, time_close):
+#         self.salon_open_time = time_open
+#         self.salon_close_time = time_close
+#
+# class HouseWithSalon(Building, BeautySalonMixin):
+#     def init(self, floor, windows, doors):
+#         super().__init__(floor, windows, doors)
+#         self.salon_open_time = None
+#         self.salon_close_time = None
+#
+# house = HouseWithSalon(1, 1, 1)
+# house.set_time_work(10, 22)
+# print(house.salon_opening_hours(13))
+# print(house.salon_opening_hours(23))
 
+# В многоэтажном доме переопределите метод строительства так, чтобы  метод возвращал сколько
+# квартир в доме заселено. Не  забудьте, что вы не можете заселить квартир больше, чем вы построили
 
-
-
-
+#
+# class Building:
+#     def __init__(self, floor, windows, doors):
+#         self.floor = floor
+#         self.windows = windows
+#         self.doors = doors
+#
+#     def build(self):
+#         print(f'The building was built')
+#
+#     def populate(self):
+#         print(f"the house was populated")
+#
+#
+# class MultyStroyHouse(Building):
+#     def __init__(self, floor, windows, doors, flats):
+#         super().__init__(floor, windows, doors)
+#         self.flats = flats
+#         self.flats_populated = 0
+#
+#     def populate(self, flats_to_populate):
+#         if flats_to_populate + self.flats_populated <= self.flats:
+#             self.flats_populated += flats_to_populate
+#         else:
+#             print("НЕт столько квартир")
 
 

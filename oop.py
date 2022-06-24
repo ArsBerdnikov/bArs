@@ -183,15 +183,20 @@ class Pet:
         print(f'I can run')
 
     def jump(self):
-        print(f'I can jump')
+        print(f'.. and jump')
 
     def birthday(self):
         print(f'I am {1 + self.age} years old')
 
     def sleep(self):
-        print(f'I can run')
+        print(f'I can sleep')
+
+    def __str__(self):
+        print(f'my name is {self.name}')
+        print(f'and my master is {self.master}')
 
     def portrait(self):
+        self.__str__()
         self.run()
         self.jump()
         self.birthday()
@@ -202,21 +207,22 @@ class Pet:
             self.meow()
         if hasattr(self, 'fly'):
             self.fly()
+        print()
 
 
 class Dog(Pet):
     def bark(self):
-        print(f'I say bow-wow')
+        print(f'..and say bow-wow')
 
 
 class Cat(Pet):
     def meow(self):
-        print(f'I say meow')
+        print(f'.. and say meow')
 
 
 class Parrot(Pet):
     def fly(self):
-        print(f'I can fly')
+        print(f'..and can fly')
 
 
 dog1 = Dog('Sharik', 3, 'Vasya')
@@ -227,4 +233,5 @@ dog1.portrait()
 cat1.portrait()
 parrot1.portrait()
 
+# print(dog1.__str__())
 

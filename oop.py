@@ -173,8 +173,154 @@
 
 
 # 14 5 ## 14 6
+# class Pet:
+#     def __init__(self, name, age, master):
+#         self.name = name
+#         self.age = age
+#         self.master = master
+#
+#     def run(self):
+#         print(f'I can run')
+#
+#     def jump(self):
+#         print(f'.. and jump')
+#
+#     def birthday(self):
+#         print(f'I am {1 + self.age} years old')
+#
+#     def sleep(self):
+#         print(f'I can sleep')
+#
+#     def __str__(self):
+#         print(f'my name is {self.name}')
+#         print(f'and my master is {self.master}')
+#
+#     def portrait(self):
+#         self.__str__()
+#         self.run()
+#         self.jump()
+#         self.birthday()
+#         self.sleep()
+#         if hasattr(self, 'bark'):
+#             self.bark()
+#         if hasattr(self, 'meow'):
+#             self.meow()
+#         if hasattr(self, 'fly'):
+#             self.fly()
+#         print()
+#
+#
+# class Dog(Pet):
+#     def bark(self):
+#         print(f'..and say bow-wow')
+#
+#
+# class Cat(Pet):
+#     def meow(self):
+#         print(f'.. and say meow')
+#
+#
+# class Parrot(Pet):
+#     def fly(self):
+#         print(f'..and can fly')
+#
+#
+# dog1 = Dog('Sharik', 3, 'Vasya')
+# cat1 = Cat('Murka', 2, 'Masha')
+# parrot1 = Parrot('Ara', 4, 'Lena')
+#
+# dog1.portrait()
+# cat1.portrait()
+# parrot1.portrait()
+#
+# # print(dog1.__str__())
+#
+
+
+# class Building:
+#     def init(self, floor, windows, doors, roof):
+#         self.floor = floor
+#         self.windows = windows
+#         self.doors = doors
+#         self.__roof = roof
+#
+#     @property
+#     def exit_to_roof(self):
+#         return self.__roof
+#
+#     @exit_to_roof.setter
+#     def exit_to_roof(self, value):
+#         self.__roof = value
+#
+#     @exit_to_roof.deleter
+#     def exit_to_roof(self):
+#         del self.__roof
+
+# class BeautySalonMixin:
+#     min_price = 10
+#
+#     def manicure(self):
+#         return BeautySalonMixin.min_price * 1.2
+#
+#     def haircut(self, hair_length):
+#         if hair_length < 30:
+#             return BeautySalonMixin.min_price * 1.2
+#         elif 30 <= hair_length < 50:
+#             return BeautySalonMixin.min_price * 1.5
+#         elif 50 <= hair_length:
+#             return BeautySalonMixin.min_price * 1.8
+
+# class EmptyString(Exception):
+#     def init(self, text):
+#         self.text = text
+#
+# class NonNegative:
+#     def __set_name__(self, owner, name):
+#         self.name = name
+#
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.name]
+#
+#     def __set__(self, instance, value):
+#         if value <= 0:
+#             raise ValueError('cannot be negative or zero')
+#         instance.__dict__[self.name] = value
+#
+#
+# class Book:
+#     pages = NonNegative
+#     price = NonNegative
+#
+#     def __init__(self, pages, published, price):
+#         self.pages = pages
+#         self.published = published
+#         self.price = price
+#
+#
+# b = Book(10, 1990, 90)
+# print(b.__dict__)
+#
+
+# 14 8 ## 14 9
+
+
+class NonNegative:
+    def __set_name__(self, owner, name):
+        self.name = name
+
+    def __get__(self, instance, owner):
+        return instance.__dict__[self.name]
+
+    def __set__(self, instance, value):
+        if value <= 0:
+            raise ValueError('cannot be negative or zero')
+        instance.__dict__[self.name] = value
+
+
 class Pet:
-    def __init__(self, name, age, master):
+    age = NonNegative()
+
+    def __init__(self, age, name=None, master=None):
         self.name = name
         self.age = age
         self.master = master
@@ -192,8 +338,11 @@ class Pet:
         print(f'I can sleep')
 
     def __str__(self):
-        print(f'my name is {self.name}')
-        print(f'and my master is {self.master}')
+        if None == self.name or None == self.master:
+            print('!!! I am poor pet, enter my name (master name)!!!!')
+        else:
+            print(f'my name is {self.name}')
+            print(f'and my master is {self.master}')
 
     def portrait(self):
         self.__str__()
@@ -225,13 +374,11 @@ class Parrot(Pet):
         print(f'..and can fly')
 
 
-dog1 = Dog('Sharik', 3, 'Vasya')
-cat1 = Cat('Murka', 2, 'Masha')
-parrot1 = Parrot('Ara', 4, 'Lena')
+dog1 = Dog(3, 'Sharik', 'Vasya')
+cat1 = Cat(2)
+parrot1 = Parrot(4, 'Ara', 'Lena')
 
 dog1.portrait()
 cat1.portrait()
 parrot1.portrait()
-
-# print(dog1.__str__())
 

@@ -273,8 +273,38 @@
 # class EmptyString(Exception):
 #     def init(self, text):
 #         self.text = text
+
+
+# 14 14 Создать класс Book. Атрибуты: количество страниц, год издания, автор, цена.
+# Добавить валидацию на проверку негативного значения и 0 Используйте дескрипторы
 #
-# class NonNegative:
+# class EmptyString(Exception):
+#     def __init__(self, text):
+#         self.text = text
+#
+#
+# class Book:
+#     def __init__(self, pages, published, price):
+#         self.pages = pages
+#         self.published = published
+#         self.price = price
+#         self.author = None
+#
+#     def set_author(self, name):
+#         if name == "":
+#             raise EmptyString("Cannot be empty")   # вызвать исключение и текст ошибки
+#         self.author = name
+#
+#
+# b = Book(10, 1990, 90)
+# b.set_author("")
+# print(b.__dict__)
+#
+
+#  14 15 Добавьте 14 14 валидацию, чтобы в имени автора не могли  передать пустую строку или число.
+# Создайте свой класс  исключения
+#
+# class NonNegativeZero:
 #     def __set_name__(self, owner, name):
 #         self.name = name
 #
@@ -283,102 +313,129 @@
 #
 #     def __set__(self, instance, value):
 #         if value <= 0:
-#             raise ValueError('cannot be negative or zero')
+#             raise ValueError("Cannot be negative")
 #         instance.__dict__[self.name] = value
 #
 #
+# class EmptyString(Exception):
+#     def __init__(self, text):
+#         self.text = text
+#
+#
 # class Book:
-#     pages = NonNegative
-#     price = NonNegative
+#     pages = NonNegativeZero()
+#     price = NonNegativeZero()
+#     published = NonNegativeZero()
 #
 #     def __init__(self, pages, published, price):
 #         self.pages = pages
 #         self.published = published
 #         self.price = price
+#         self.author = None
+#
+#     def set_author(self, name):
+#         if name == "":
+#             raise EmptyString("Cannot be empty")
+#         self.author = name
+
+# 14 8 ## 14 9 *********************** домашка *********************
 #
 #
-# b = Book(10, 1990, 90)
-# print(b.__dict__)
+# class NonNegative:
+#     def __set_name__(self, owner, name):
+#         self.name = name                    # определяем self name
 #
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.name]  # геттер для self name
+#
+#     def __set__(self, instance, value):
+#         if value <= 0:
+#             raise ValueError('cannot be negative or zero')  # вызов текста с ошибкой
+#         instance.__dict__[self.name] = value
+#
+#
+# class Pet:
+#     age = NonNegative()
+#
+#     def __init__(self, age, name=None, master=None):
+#         self.name = name
+#         self.age = age
+#         self.master = master
+#
+#     def run(self):
+#         print(f'I can run')
+#
+#     def jump(self):
+#         print(f'.. and jump')
+#
+#     def birthday(self):
+#         print(f'I am {1 + self.age} years old')
+#
+#     def sleep(self):
+#         print(f'I can sleep')
+#
+#     def __str__(self):
+#         if None == self.name or None == self.master:
+#             print('!!! I am poor pet, enter my name (master name)!!!!')
+#         else:
+#             print(f'my name is {self.name}')
+#             print(f'and my master is {self.master}')
+#
+#     def portrait(self):
+#         self.__str__()
+#         self.run()
+#         self.jump()
+#         self.birthday()
+#         self.sleep()
+#         if hasattr(self, 'bark'):
+#             self.bark()
+#         if hasattr(self, 'meow'):
+#             self.meow()
+#         if hasattr(self, 'fly'):
+#             self.fly()
+#         print()
+#
+#
+# class Dog(Pet):
+#     def bark(self):
+#         print(f'..and say bow-wow')
+#
+#
+# class Cat(Pet):
+#     def meow(self):
+#         print(f'.. and say meow')
+#
+#
+# class Parrot(Pet):
+#     def fly(self):
+#         print(f'..and can fly')
+#
+#
+# dog1 = Dog(3, 'Sharik', 'Vasya')
+# cat1 = Cat(2)
+# parrot1 = Parrot(4, 'Ara', 'Lena')
+#
+# dog1.portrait()
+# cat1.portrait()
+# parrot1.portrait()
 
-# 14 8 ## 14 9
-
-
-class NonNegative:
-    def __set_name__(self, owner, name):
-        self.name = name
-
-    def __get__(self, instance, owner):
-        return instance.__dict__[self.name]
-
-    def __set__(self, instance, value):
-        if value <= 0:
-            raise ValueError('cannot be negative or zero')
-        instance.__dict__[self.name] = value
-
-
-class Pet:
-    age = NonNegative()
-
-    def __init__(self, age, name=None, master=None):
-        self.name = name
-        self.age = age
-        self.master = master
-
-    def run(self):
-        print(f'I can run')
-
-    def jump(self):
-        print(f'.. and jump')
-
-    def birthday(self):
-        print(f'I am {1 + self.age} years old')
-
-    def sleep(self):
-        print(f'I can sleep')
-
-    def __str__(self):
-        if None == self.name or None == self.master:
-            print('!!! I am poor pet, enter my name (master name)!!!!')
-        else:
-            print(f'my name is {self.name}')
-            print(f'and my master is {self.master}')
-
-    def portrait(self):
-        self.__str__()
-        self.run()
-        self.jump()
-        self.birthday()
-        self.sleep()
-        if hasattr(self, 'bark'):
-            self.bark()
-        if hasattr(self, 'meow'):
-            self.meow()
-        if hasattr(self, 'fly'):
-            self.fly()
-        print()
-
-
-class Dog(Pet):
-    def bark(self):
-        print(f'..and say bow-wow')
-
-
-class Cat(Pet):
-    def meow(self):
-        print(f'.. and say meow')
-
-
-class Parrot(Pet):
-    def fly(self):
-        print(f'..and can fly')
-
-
-dog1 = Dog(3, 'Sharik', 'Vasya')
-cat1 = Cat(2)
-parrot1 = Parrot(4, 'Ara', 'Lena')
-
-dog1.portrait()
-cat1.portrait()
-parrot1.portrait()
+# ************************** создание класса для собственных исключений *************************
+# class MyError(Exception):
+#     def __init__(self, text, num):
+#         self.txt = text
+#         self.n = num
+#
+#
+# a = input("Input positive integer: ")
+# try:
+#     a = int(a)
+#     if a < 0:
+#         raise MyError("You give negative!", a)  # текст ошибки
+# except ValueError:
+#     print("wrong type of value!")
+# except MyError:
+#     print(MyError)
+#     # print(MyError.args)
+# else:
+#     print(a)
 
